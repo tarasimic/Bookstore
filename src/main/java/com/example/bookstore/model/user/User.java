@@ -1,6 +1,7 @@
-package com.example.bookstore.model;
+package com.example.bookstore.model.user;
 
 
+import com.example.bookstore.model.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,7 +21,7 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String firstName;

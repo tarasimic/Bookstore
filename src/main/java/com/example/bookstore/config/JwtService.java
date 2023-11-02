@@ -34,35 +34,10 @@ public class JwtService {
             throw new RuntimeException(e);
         }
     }
-//
-//    static {
-//        try {
-//            char[] password = "QE41hQae7CUsTKkEPZz".toCharArray();
-//            byte[] salt = generateSalt();
-//            int iterationCount = 65536;
-//            int keyLength = 256;
-//            SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256");
-//            SecretKey secretKey = secretKeyFactory.generateSecret(new PBEKeySpec(password, salt, iterationCount, keyLength));
-//            SECRET_KEY = new SecretKeySpec(secretKey.getEncoded(), "AES");
-//        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//    private static byte[] generateSalt() {
-//        SecureRandom secureRandom = new SecureRandom();
-//        byte[] salt = new byte[120];
-//        secureRandom.nextBytes(salt);
-//        return salt;
-//    }
 
     public String extractUsername(String token) throws NoSuchAlgorithmException {
             return extractOneClaim(token, Claims::getSubject);
     }
-
-//    public SecretKey secretKey() throws NoSuchAlgorithmException {
-//        KeyGenerator keyGenerator = KeyGenerator.getInstance("HmacSHA256");
-//        return keyGenerator.generateKey();
-//    }
 
     private Claims extractClaims(String token) throws NoSuchAlgorithmException {
         return Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();

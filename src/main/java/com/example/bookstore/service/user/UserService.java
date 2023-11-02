@@ -1,24 +1,21 @@
 package com.example.bookstore.service.user;
-//
-//import com.example.bookstore.auth.AuthenticationRequest;
-//import com.example.bookstore.auth.AuthenticationResponse;
-//import com.example.bookstore.auth.RegisterRequest;
 import com.example.bookstore.config.JwtService;
 import com.example.bookstore.model.LogIn;
 import com.example.bookstore.model.Role;
-import com.example.bookstore.model.User;
-import com.example.bookstore.model.UserRepository;
+import com.example.bookstore.model.user.User;
+import com.example.bookstore.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.security.NoSuchAlgorithmException;
-
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
+    @Autowired
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
     private final JwtService jwtService;
@@ -29,12 +26,6 @@ public class UserService {
         userRepository.save(user);
     }
 
-//    public AuthenticationResponse authenticate(AuthenticationRequest request) throws NoSuchAlgorithmException {
-//        manager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-//        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
-//        var jwt = jwtService.generatesToken(user);
-//        return AuthenticationResponse.builder().token(jwt).build();
-//    }
 
     public String logIn(LogIn req){
         manager.authenticate(new UsernamePasswordAuthenticationToken(req.getEmail(), req.getPassword()));

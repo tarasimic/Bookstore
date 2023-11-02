@@ -15,7 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-//@SuppressWarnings("all")
 public class SecurityConfiguration {
 
     private final JwtAuthenticationFilter filter;
@@ -24,7 +23,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth) -> {
-            auth.requestMatchers("/bookstore/**").permitAll().anyRequest().authenticated();
+            auth.requestMatchers("/bookstore/**", "/bookstore/books/allBooks").permitAll().anyRequest().authenticated();
         }).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authenticationProvider(authenticationProvider).addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
