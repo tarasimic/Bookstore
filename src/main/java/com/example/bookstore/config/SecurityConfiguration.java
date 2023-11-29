@@ -23,7 +23,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests((auth) -> {
-            auth.requestMatchers("/bookstore/**", "/bookstore/books/allBooks").permitAll().anyRequest().authenticated();
+            auth.requestMatchers("/bookstore/register", "bookstore/login").permitAll().anyRequest().authenticated();
         }).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authenticationProvider(authenticationProvider).addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();

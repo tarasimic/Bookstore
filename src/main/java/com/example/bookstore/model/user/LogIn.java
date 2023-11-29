@@ -1,4 +1,4 @@
-package com.example.bookstore.model;
+package com.example.bookstore.model.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,14 +1,13 @@
 package com.example.bookstore.model.user;
 
 
-import com.example.bookstore.model.Role;
+import com.example.bookstore.model.order.Order;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int user_id;
 
     private String firstName;
     private String lastName;
@@ -31,6 +30,8 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)//by default, it stores values as ordinal
     private Role role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

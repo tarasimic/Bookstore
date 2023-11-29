@@ -1,7 +1,7 @@
 package com.example.bookstore.service.user;
 import com.example.bookstore.config.JwtService;
-import com.example.bookstore.model.LogIn;
-import com.example.bookstore.model.Role;
+import com.example.bookstore.model.user.LogIn;
+import com.example.bookstore.model.user.Role;
 import com.example.bookstore.model.user.User;
 import com.example.bookstore.model.user.UserRepository;
 import lombok.RequiredArgsConstructor;

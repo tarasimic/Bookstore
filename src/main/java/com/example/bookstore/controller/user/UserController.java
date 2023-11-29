@@ -1,6 +1,6 @@
 package com.example.bookstore.controller.user;
 
-import com.example.bookstore.model.LogIn;
+import com.example.bookstore.model.user.LogIn;
 import com.example.bookstore.model.user.User;
 import com.example.bookstore.service.user.UserService;
 import lombok.RequiredArgsConstructor;
